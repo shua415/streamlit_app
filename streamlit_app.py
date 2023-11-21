@@ -1,8 +1,9 @@
 import streamlit 
 import pandas 
+import requests
 
 # streamlit.title("My Mom's New Healthy Diet") 
-streamlit.header('Breakfast favourites TEST TEST')
+streamlit.header('Breakfast favourites')
 streamlit.text('🥣Omega 3 & Blueberry Oatmeal')
 streamlit.text('🥗Kale, Spinach & Rocket Smoothie')
 streamlit.text('🐔Hard-Boiled Free-Range Egg')
@@ -19,13 +20,16 @@ fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.
 # put selected fruits in a variable 
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 
+
+# displya fruityvice api response 
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fruityvice_response)
+
+
 # Display the table on the page.
 streamlit.dataframe(my_fruit_list)
 
 
-# displya fruityvice api response 
-import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response)
+
 
 
